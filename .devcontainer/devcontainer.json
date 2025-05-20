@@ -12,7 +12,10 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 install --user -r requirements.txt"
+	"postCreateCommand": "pip3 install --user -r requirements.txt",
+
+	// Environment variables to set in the container.
+	"runArgs": ["--env-file",".devcontainer/.env"]
 
 	// Configure tool-specific properties.
 	// "customizations": {},
