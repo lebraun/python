@@ -15,7 +15,17 @@
 	"postCreateCommand": "pip3 install --user -r requirements.txt",
 
 	// Environment variables to set in the container.
-	"runArgs": ["--env-file",".devcontainer/.env"]
+	"runArgs": [
+		"--env-file",
+		".devcontainer/.env"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Postman.postman-for-vscode"
+			]
+		}
+	}
 
 	// Configure tool-specific properties.
 	// "customizations": {},

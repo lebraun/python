@@ -15,16 +15,15 @@ class QueryRequest(BaseModel):
 
 @app.post("/query")
 async def query_openai(request: QueryRequest):
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    if not openai_api_key:
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    if not openai.api_key:
         raise HTTPException(status_code=500, detail="OpenAI API key not set")
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": request.prompt}],
-            api_key=openai_api_key
+            messages=[{"role": "user", "content": request.prompt}]
         )
-        return {"response": response.choices[0].message["content"]}
+        return {"response": response.choices[0].message.content}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
